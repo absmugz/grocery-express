@@ -40,19 +40,15 @@ class OrderController extends Controller
             config('services.twilio.auth_token')
         );
     }
-    public function order (Request $request): \Illuminate\Http\JsonResponse
+    public function order (Request $request)
     {
-        $message = $this->twilio()->messages->create(
-            $request->input('to'),
-            [
-                'from' => 'whatsapp:+15676777791',
-                'body' => $request->input('message'),
-            ]
-        );
+        $mobileNumber = $request->get('WaId');
+        $this->twilio()->messages
+            ->create("whatsapp:+" . $mobileNumber, // to
+                [
+                    "from" => $request->get('To'),
+                    "body" => 'Carl akaipa',
+                ]);
 
-        return response()->json([
-            'sid' => $message->sid,
-            'status' => $message->status,
-        ]);
     }
 }
