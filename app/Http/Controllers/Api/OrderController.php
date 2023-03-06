@@ -42,7 +42,6 @@ class OrderController extends Controller
         );
     }
 
-
     public function order (Request $request)
     {
         $sid = config('services.twilio.account_sid');
@@ -53,12 +52,12 @@ class OrderController extends Controller
             Log::debug('twilio', [
                 'request' => $request->all(),
             ]);
-            $mobileNumber = $request->get('to');
+            $mobileNumber = $request->input('to');
             $twilio->messages
-                ->create("whatsapp:+" . $mobileNumber, // to
+                ->create($mobileNumber, // to
                     [
                         'from' => 'whatsapp:+15676777791',
-                        "body" => 'Carl akaipa',
+                        "body" => 'Mopane test',
                     ]);
 
         } catch (\Exception $e) {
@@ -66,5 +65,9 @@ class OrderController extends Controller
                 'request' => $request->all(),
             ]);
         }
+
+
+
+
     }
 }
