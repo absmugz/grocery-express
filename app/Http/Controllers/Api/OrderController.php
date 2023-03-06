@@ -37,10 +37,11 @@ class OrderController extends Controller
     protected function twilio(): Client
     {
         return new Client(
-            config('services.twilio.account_sid');
-            config('services.twilio.auth_token');
+            config('services.twilio.account_sid'),
+            config('services.twilio.auth_token')
         );
     }
+
 
     public function order (Request $request)
     {
@@ -65,9 +66,5 @@ class OrderController extends Controller
                 'request' => $request->all(),
             ]);
         }
-
-
-
-
     }
 }
