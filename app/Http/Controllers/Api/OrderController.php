@@ -37,8 +37,8 @@ class OrderController extends Controller
     protected function twilio(): Client
     {
         return new Client(
-            config('services.twilio.account_sid'),
-            config('services.twilio.auth_token')
+            config('services.twilio.account_sid');
+            config('services.twilio.auth_token');
         );
     }
 
@@ -52,7 +52,7 @@ class OrderController extends Controller
             Log::debug('twilio', [
                 'request' => $request->all(),
             ]);
-            $mobileNumber = $request->get('WaId');
+            $mobileNumber = $request->get('to');
             $twilio->messages
                 ->create("whatsapp:+" . $mobileNumber, // to
                     [
