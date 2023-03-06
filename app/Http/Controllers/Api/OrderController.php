@@ -49,6 +49,9 @@ class OrderController extends Controller
         $twilio = new Client($sid, $token);
 
         try {
+            Log::debug('twilio', [
+                'request' => $request->all(),
+            ]);
             $mobileNumber = $request->get('WaId');
             $twilio->messages
                 ->create("whatsapp:+" . $mobileNumber, // to
