@@ -34,13 +34,13 @@ class OrderController extends Controller
     /**
      * @throws ConfigurationException
      */
-//    protected function twilio(): Client
-//    {
-//        return new Client(
-//            config('services.twilio.account_sid'),
-//            config('services.twilio.auth_token')
-//        );
-//    }
+    protected function twilio(): Client
+    {
+        return new Client(
+            config('services.twilio.account_sid'),
+            config('services.twilio.auth_token')
+        );
+    }
 
     public function order (Request $request)
     {
