@@ -33,23 +33,29 @@ class OrderController extends Controller
     /**
      * @throws ConfigurationException
      */
-    protected function twilio(): Client
-    {
-        return new Client(
-            config('services.twilio.account_sid'),
-            config('services.twilio.auth_token')
-        );
-    }
+//    protected function twilio(): Client
+//    {
+//        return new Client(
+//            config('services.twilio.account_sid'),
+//            config('services.twilio.auth_token')
+//        );
+//    }
+
     public function order (Request $request)
     {
+        $sid = config('services.twilio.account_sid');
+        $token = config('services.twilio.auth_token');
+        $twilio = new Client($sid, $token);
 
         $mobileNumber = $request->get('WaId');
-        $this->twilio()->messages
+        $twilio->messages
             ->create("whatsapp:+" . $mobileNumber, // to
                 [
                     'from' => 'whatsapp:+15676777791',
                     "body" => 'Carl akaipa',
                 ]);
+
+
 
     }
 }
