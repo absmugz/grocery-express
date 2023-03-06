@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Twilio\Exceptions\ConfigurationException;
 use Twilio\Exceptions\TwilioException;
 use Twilio\Rest\Client;
@@ -47,13 +48,21 @@ class OrderController extends Controller
         $token = config('services.twilio.auth_token');
         $twilio = new Client($sid, $token);
 
-        $mobileNumber = $request->get('WaId');
-        $twilio->messages
-            ->create("whatsapp:+" . $mobileNumber, // to
-                [
-                    'from' => 'whatsapp:+15676777791',
-                    "body" => 'Carl akaipa',
-                ]);
+        try {
+            $mobileNumber = $request->get('WaId');
+            $twilio->messages
+                ->create("whatsapp:+" . $mobileNumber, // to
+                    [
+                        'from' => 'whatsapp:+15676777791',
+                        "body" => 'Carl akaipa',
+                    ]);
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), [
+                'request' => $request->all(),
+            ]);
+        }
+
 
 
 
