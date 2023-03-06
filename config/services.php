@@ -32,7 +32,7 @@ return [
 
     'twilio' => [
         'account_sid' => env('TWILIO_ACCOUNT_SID', 'AC68a5a258bd7e01b7496cf19795963178'),
-        'auth_token' => env('TWILIO_AUTH_TOKEN', 'd3303df16668491ac607338c2516ec45'),
+        'auth_token' => env('TWILIO_AUTH_TOKEN', '6e99d0a805a3f354196ac3ee1b81cb86'),
     ],
 
 ];
