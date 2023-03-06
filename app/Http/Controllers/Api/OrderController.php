@@ -42,11 +42,12 @@ class OrderController extends Controller
     }
     public function order (Request $request)
     {
+
         $mobileNumber = $request->get('WaId');
         $this->twilio()->messages
             ->create("whatsapp:+" . $mobileNumber, // to
                 [
-                    "from" => $request->get('To'),
+                    'from' => 'whatsapp:+15676777791',
                     "body" => 'Carl akaipa',
                 ]);
 
